@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@model List<Genbot.DAL.DB.Users>
+
+<section id="configuration">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Kullanıcı Listesi</h4>
+
+                    <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                </div>
+                <div class="card-content collapse show">
+                    <div class="card-body card-dashboard">
+                        <table class="dataTable file-export table table-striped table-bordered zero-configuration">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>Kullanıcı Adı</th>
+                                    <th>Rol</th>
+                                    <th>Durum</th>
+                                    <th>İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>@item.UserName</td>
+                                    <td>
+                                        @if (item.Role == true)
+                                        {
+                                            <span class="badge badge-success">Admin</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge badge-warning">Çalışan</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.IsActive == true)
+                                        {
+                                            <span class="badge badge-success">Aktif</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge badge-danger">Pasif</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <a href="/User/Update/@item.ID" class="btn btn-sm btn-warning"> <i class="la la-edit"></i> Güncelle</a>
+                                    </td>
+
+                                </tr>
+
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

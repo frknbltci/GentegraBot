@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Insert";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="card" style="height:auto;">
+    <div class="card-header">
+        <h4 class="card-title">Kullanıcı Ekleme Paneli</h4>
+    </div>
+    <div class="card-block">
+        <div class="card-body">
+
+            <fieldset class="form-group col-md-7">
+                <label for="kullaniciAdi">Kullanıcı Adı:</label>
+                <b class="hidden" id="kullaniciAdErr" style="color:red;">*</b>
+                <input type="text" class="form-control" required placeholder="Kullanıcı Adı Gir" id="kullaniciAdi">
+            </fieldset>
+            <fieldset class="form-group col-md-7">
+                <label for="kullaniciSifre">Kullanıcı Şifresi:</label>
+                <b class="hidden" id="sifreErr" style="color:red;">*</b>
+                <input type="text" class="form-control" placeholder="Kullanıcı Şifresi Gir" id="kullaniciSifre">
+            </fieldset>
+
+            <fieldset class="form-group col-md-5">
+                <label> Aktif Mi ?</label><br>
+                <label class="radio-inline"><input name="aktifMi" value="true" checked type="radio">Aktif</label>
+                <label class="radio-inline"><input name="aktifMi" value="false" type="radio">Pasif</label>
+            </fieldset>
+            <fieldset class="form-group col-md-5">
+                <label> Rol Seç</label><br>
+                <label class="radio-inline"><input name="Role" value="true" type="radio">Admin</label>
+                <label class="radio-inline"><input name="Role" value="false" checked type="radio">Kullanıcı</label>
+            </fieldset>
+            <fieldset class="reset-button ">
+                <button id="ekleKullanici" class="btn btn-success col-sm-8">Kaydet</button>
+            </fieldset>
+        </div>
+    </div>
+</div>

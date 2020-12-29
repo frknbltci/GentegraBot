@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "ExcelInsert";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@model List<Genbot.UI.Models.GGVM>
+  
+<section id="configuration">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">N11 Ürün Listesi</h4>
+                    <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                </div>
+                <div class="card-content collapse show">
+                    <div class="card-body card-dashboard">
+                        <table id="example" class=" file-export dataTable table table-striped table-bordered zero-configuration">
+                            <thead>
+                                <tr>
+                                    <th>Aranan Ürün Adı</th>
+                                    <th>Pazaryeri Ürün Adı</th>
+                                    <th>Satıcı Adı</th>
+                                    <th>Yüksek Fiyat</th>
+                                    <th>Düşük Fiyat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.SearchName
+                                        </td>
+
+                                        <td>
+                                            @if (item.ProductURL == "Ürün Bulunamadı" || item.ProductURL == "-")
+                                            {
+                                                <a href="#">@item.ProductName</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="@item.ProductURL" target="_blank">@item.ProductName</a>
+
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.SellerURL == "Ürün Bulunamadı")
+                                            {
+                                                <a href="#">@item.SellerName</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="@item.SellerURL" target="_blank">@item.SellerName</a>
+
+                                            }
+                                        </td>
+                                        <td>@item.HPrice </td>
+                                        <td>@item.LPrice</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

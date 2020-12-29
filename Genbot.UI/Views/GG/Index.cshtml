@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div>
+    <h3>GittiGidiyor Ürün Tarama Sayfası</h3>
+    <h3><span class="text-danger">GG için tarama yapacaksınız Excel içinde "A" sütununa ve 2. satırından itibaren sadece ürün isimlerini yazmanız gerekmektedir. </span></h3>
+    <form action="/GG/ExcelInsert" method="post" enctype="multipart/form-data">
+
+        <div class="col-6">
+            <label for="issueinput2" style="margin-top: 20px;">Excel Yükle </label>
+            <input type="file" id="excel" class="form-control" name="excelFile">
+        </div>
+        <button class="btn btn-success mt-1"><i class="la la-plus"></i>İşleme Başla</button>
+    </form>
+
+</div>

@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "ExcelInsert";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@model List<Genbot.UI.Models.TYVM>
+
+<section id="configuration">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Trendyol Ürün Listesi</h4>
+                    <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                </div>
+                <div class="card-content collapse show">
+                    <div class="card-body card-dashboard">
+                        <table id="example" class=" file-export table-responsive dataTable table table-striped table-bordered zero-configuration">
+                            <thead>
+                                <tr>
+                                    <th>Barkod</th>
+                                    <th>Ürün Adı</th>
+                                    <th>1. Satıcı Adı</th>
+                                    <th>1. Satıcı Yüksek Fiyat</th>
+                                    <th>1. Satıcı Düşük Fiyat</th>
+                                    <th>1. Satıcı Kampanya Fiyat</th>
+                                    <th>2. Satıcı Adı</th>
+                                    <th>2. Satıcı Yüksek Fiyat</th>
+                                    <th>2. Satıcı Düşük Fiyat</th>
+                                    <th>2. Satıcı Kampanya Fiyat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var item in Model)
+                                {
+                                    if (item.ProductName == "Ürün Bulunamadı")
+                                    {
+                                        <tr>
+                                            <td>@item.PBarcode</td>
+                                            <td>
+                                                <span>Ürün Bulunamadı</span>
+                                            </td>
+                                            <td>
+                                                <span>Ürün Bulunamadı</span>
+                                            </td>
+                                            <td>
+                                                <span>Ürün Bulunamadı</span>
+                                            </td>
+                                            <td>
+                                                <span>Ürün Bulunamadı</span>
+                                            </td>
+                                            <td>
+                                                <span>Ürün Bulunamadı</span>
+                                            </td>
+                                            <td>
+                                                <span>Ürün Bulunamadı</span>
+                                            </td>
+                                            <td>
+                                                <span>Ürün Bulunamadı</span>
+                                            </td>
+                                            <td>
+                                                <span>Ürün Bulunamadı</span>
+                                            </td>
+                                            <td>
+                                                <span>Ürün Bulunamadı</span>
+                                            </td>
+
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td>@item.PBarcode</td>
+                                            <td><a href="@item.ProductURL" target="_blank">@item.ProductName</a></td>
+                                            <td><a href="@item.tyseller[0].SellerURL" target="_blank">@item.tyseller[0].SellerName</a></td>
+                                            <td>@item.tyseller[0].HPrice</td>
+                                            <td>@item.tyseller[0].LPrice</td>
+                                            <td>@item.tyseller[0].KPrice</td>
+                                            @if (item.tyseller.Count > 1)
+                                            {
+                                                <td><a href="@item.tyseller[1].SellerURL" target="_blank">@item.tyseller[1].SellerName</a></td>
+                                                <td>@item.tyseller[1].HPrice</td>
+                                                <td>@item.tyseller[1].LPrice</td>
+                                                <td>@item.tyseller[1].KPrice</td>
+                                            }
+                                            else
+                                            {
+                                                <td><a href="#"></a>2. Satıcı Bulunamadı</td>
+                                                <td>2. Satıcı Bulunamadı</td>
+                                                <td>2. Satıcı Bulunamadı</td>
+                                                <td>2. Satıcı Bulunamadı</td>
+                                            }
+
+
+                                        </tr>
+                                    }
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

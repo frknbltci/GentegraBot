@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@model Genbot.DAL.DB.Users
+<div class="card" style="height:auto;">
+    <div class="card-header">
+        <h4 class="card-title">Kullanıcı Güncelleme Paneli</h4>
+    </div>
+    <div class="card-block">
+        <form action="/User/Update" method="post">
+            <div class="card-body">
+                <input type="text" id="ID" name="ID" hidden value="@Model.ID" />
+                <fieldset class="form-group col-md-7">
+                    <label for="kullaniciAdi">Kullanıcı Adı:</label>
+                    <b class="hidden" id="kullaniciAdErr" style="color:red;">*</b>
+                    <input type="text" class="form-control" required placeholder="Kullanıcı Adı Giriniz..." name="UserName" id="kullaniciAdi" value="@Model.UserName">
+                </fieldset>
+                <fieldset class="form-group col-md-7">
+                    <label for="kullaniciSifre">Kullanıcı Şifresi:</label>
+                    <input type="text" class="form-control" placeholder="Kullanıcı Şifresi Giriniz..." required name="Password" id="kullaniciSifre" value="@Model.Password">
+                </fieldset>
+
+                <fieldset class="form-group col-md-5">
+                    <label class="control-label">Aktif mi?<span> @Html.CheckBox("IsActive", (Boolean)Model.IsActive, new { @cheked = Model.IsActive })</span></label>
+                </fieldset>
+                <fieldset class="form-group col-md-5">
+                    <label class="control-label">Admin mi?<span> @Html.CheckBox("Role", (Boolean)Model.Role, new { @cheked = Model.Role })</span></label>
+
+                </fieldset>
+                <fieldset class="reset-button ">
+                    <button type="submit" class="btn col-6 btn-warning"> <i class="la la-save"></i> Güncelle</button>
+                </fieldset>
+            </div>
+           
+        </form>
+
+       
+    </div>
+</div>

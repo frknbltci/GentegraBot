@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "PageError";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>Sayfa Bulunamadı</h2>
+
+<div>
+    Hata Kodu: @Response.StatusCode
+</div>
+<div>
+    Hata Sebebi: @ViewBag.Kaynak
+</div>
+
