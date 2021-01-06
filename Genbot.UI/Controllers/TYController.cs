@@ -34,6 +34,9 @@ namespace Genbot.UI.Controllers
             {
                 if (excelFile.FileName.EndsWith("xls") || excelFile.FileName.EndsWith("xlsx"))
                 {
+
+                    //string path2 = Server.MapPath("~/Assets/Upload/turan");
+
                     string path = Server.MapPath(((SessionContext)Session["SessionContext"]).FileURL.ToString()) + "/" + excelFile.FileName;
 
                     if (System.IO.File.Exists(path))

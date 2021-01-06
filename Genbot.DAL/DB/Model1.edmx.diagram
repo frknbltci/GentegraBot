@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="85618cb9835e4ca49de0fe6a50a78afe" Name="Diagram1">
+      <Diagram DiagramId="6d3864295b72426ebf4b100176cf52f4" Name="Diagram1">
         <EntityTypeShape EntityType="GenbotDBModel.Users" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>

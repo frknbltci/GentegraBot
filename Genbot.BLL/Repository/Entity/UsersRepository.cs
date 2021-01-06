@@ -13,7 +13,6 @@ namespace Genbot.BLL.Repository.Entity
         {
             return table.FirstOrDefault(x => x.UserName == username);
         }
-
         public bool login(string username, string password)
         {
             bool rtn = table.Any(x => x.UserName == username && x.Password == password);
