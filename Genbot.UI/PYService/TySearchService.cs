@@ -40,7 +40,6 @@ namespace Genbot.UI.PYService
             string html;
             if (PageActive)
             {
-  
                 try
                 {
                     html = client.DownloadString(urlty + barcode);

@@ -37,7 +37,9 @@ namespace Genbot.UI.Controllers
 
                     //string path2 = Server.MapPath("~/Assets/Upload/turan");
 
-                    string path = Server.MapPath(((SessionContext)Session["SessionContext"]).FileURL.ToString()) + "/" + excelFile.FileName;
+                    //string path = Server.MapPath((SessionContext)Session["SessionContext"]).FileURL + "/" + excelFile.FileName;
+
+                    string path = ((SessionContext)Session["SessionContext"]).FileURL + "/" + excelFile.FileName;
 
                     if (System.IO.File.Exists(path))
                     {
