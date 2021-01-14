@@ -29,7 +29,7 @@ namespace Genbot.UI.Controllers
             {
                 if (excelFile.FileName.EndsWith("xls") || excelFile.FileName.EndsWith("xlsx"))
                 {
-                    string path = ((SessionContext)Session["SessionContext"]).FileURL + "/" + excelFile.FileName;
+                    string path = Server.MapPath(((SessionContext)Session["SessionContext"]).FileURL) + "/" + excelFile.FileName;
 
                     if (System.IO.File.Exists(path))
                     {

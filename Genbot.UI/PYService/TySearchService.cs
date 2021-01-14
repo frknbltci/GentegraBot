@@ -173,7 +173,7 @@ namespace Genbot.UI.PYService
                     }
                     else
                     {
-                            //Diğer satıcı var kampanya yok 
+                            //Diğer satıcı var kampanya yok kısmı
                         if (varMi == null)
                         {
                             try
@@ -202,15 +202,16 @@ namespace Genbot.UI.PYService
                                 product.PBarcode = barcode;
 
                                 var otherSellerCamp = test1.SelectSingleNode("//*[@class='pr-mc-w gnr-cnt-br']/div/div/div[3]/div/span");
-
+                                    //prc-slg okunmuyo
                                 if (otherSellerCamp == null)
                                 {
                                     product.tyseller.Add(new TYSELLER
                                     {
-                                        SellerURL = StringOperations.slugnbsp(headPurl + test1.SelectSingleNode("//a[contains(@class,'pr-mc-w')]").Attributes["href"].Value),
-                                        SellerName = StringOperations.delnumb(test1.SelectSingleNode("//a[contains(@class,'pr-mc-w')]/div[2]//div[@class='pr-mb-mn']").InnerText),
-                                        LPrice = test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-org')]") != null ? test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-slg')]").InnerText : "Düşük Fiyat Bulunamadı",
-                                        HPrice = test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-org')]") != null ? test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-org')]").InnerText : test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-w']//div//span[@class='prc-slg']").InnerText,
+                                       SellerURL = StringOperations.slugnbsp(headPurl + test1.SelectSingleNode("//div[contains(@class,'mc-ct-lft')]/div[1]//div[@class='pr-mb-mn']/a").Attributes["href"].Value),
+                                      SellerName = StringOperations.delnumb(test1.SelectSingleNode("//div[contains(@class,'mc-ct-lft')]/div[1]//div[@class='pr-mb-mn']").InnerText),
+                                        LPrice = test1.SelectSingleNode("//div[@class='mc-ct-rght']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-slg')]") != null ? test1.SelectSingleNode("//div[@class='mc-ct-rght']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-slg')]").InnerText : test1.SelectSingleNode("//div[@class='mc-ct-rght']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-dsc')]") !=null ? test1.SelectSingleNode("//div[@class='mc-ct-rght']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-dsc')]").InnerText:"Düşük Fiyat Bulunamadı",
+                                       HPrice = test1.SelectSingleNode("//div[@class='mc-ct-rght']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-org')]") != null ? test1.SelectSingleNode("//div[@class='mc-ct-rght']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-org')]").InnerText :
+                                      test1.SelectSingleNode("//div[@class='mc-ct-rght']//div[@class='pr-bx-w']//div//span[@class='prc-slg']").InnerText,
                                         KPrice = "Kampanya Bulunamadı"
 
                                     });
@@ -218,16 +219,17 @@ namespace Genbot.UI.PYService
                                 else
                                 {
                                     //diğer satıcılarda yüksek price(üzeri çizili) yoksa
-                                    var hpriceIfExist = test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-org')]");
+                                    var hpriceIfExist = test1.SelectSingleNode("//div[@class='mc-ct-rght']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-org')]");
 
                                     if (hpriceIfExist != null)
                                     {
                                         product.tyseller.Add(new TYSELLER
                                         {
-                                            SellerURL = StringOperations.slugnbsp(headPurl + test1.SelectSingleNode("//a[contains(@class,'pr-mc-w')]").Attributes["href"].Value),
+                                            SellerURL = StringOperations.slugnbsp(headPurl + test1.SelectSingleNode("//div[contains(@class,'mc-ct-lft')]/div[1]//div[@class='pr-mb-mn']/a").Attributes["href"].Value),
                                             SellerName = StringOperations.delnumb(test1.SelectSingleNode("//a[contains(@class,'pr-mc-w')]/div[2]//div[@class='pr-mb-mn']").InnerText),
                                             LPrice = otherSellerCamp.InnerText,
-                                            HPrice = test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-org')]") != null ? test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-org')]").InnerText : test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-w']//div//span[@class='prc-slg']").InnerText,
+                                            HPrice = test1.SelectSingleNode("//div[@class='mc-ct-rght']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-org')]") != null ? test1.SelectSingleNode("//div[@class='mc-ct-rght']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-org')]").InnerText :
+                                            test1.SelectSingleNode("//div[@class='mc-ct-rght']//div[@class='pr-bx-w']//div//span[@class='prc-slg']").InnerText,
                                             KPrice = "Kampanya Bulunamadı"
 
                                         });
@@ -237,10 +239,10 @@ namespace Genbot.UI.PYService
 
                                         product.tyseller.Add(new TYSELLER
                                         {
-                                            SellerURL = StringOperations.slugnbsp(headPurl + test1.SelectSingleNode("//a[contains(@class,'pr-mc-w')]").Attributes["href"].Value),
+                                            SellerURL = StringOperations.slugnbsp(headPurl + test1.SelectSingleNode("//div[contains(@class,'mc-ct-lft')]/div[1]//div[@class='pr-mb-mn']/a").Attributes["href"].Value),
                                             SellerName = StringOperations.delnumb(test1.SelectSingleNode("//a[contains(@class,'pr-mc-w')]/div[2]//div[@class='pr-mb-mn']").InnerText),
                                             LPrice = otherSellerCamp.InnerText,
-                                            HPrice = test1.SelectSingleNode("//*[@class='pr-mc-w gnr-cnt-br']/div/div/div/div/span") != null ? test1.SelectSingleNode("//*[@class='pr-mc-w gnr-cnt-br']/div/div/div/div/span").InnerText : "Yüksek Fiyat Bulunamadı",
+                                            HPrice = test1.SelectSingleNode("//*[@class='mc-ct-rght']/div/div/span") != null ? test1.SelectSingleNode("//*[@class='mc-ct-rght']/div/div/span").InnerText : "Yüksek Fiyat Bulunamadı",
                                         KPrice = "Kampanya Bulunamadı"
 
                                         });
@@ -250,11 +252,12 @@ namespace Genbot.UI.PYService
                                 }
 
                             }
-                            catch (Exception)
+                            catch (Exception )
                             {
+                                    
                                 product.tyseller.Add(new TYSELLER
                                 {
-                                    SellerURL = StringOperations.slugnbsp(headPurl + test1.SelectSingleNode("//div[@class='sl-nm']/a").Attributes["href"].Value),
+                                    SellerURL =StringOperations.slugnbsp(headPurl + test1.SelectSingleNode("//div[@class='sl-nm']/a").Attributes["href"].Value),
                                     SellerName = test1.SelectSingleNode("//div[@class='sl-nm']/a").InnerText,
 
 
@@ -266,7 +269,6 @@ namespace Genbot.UI.PYService
 
                                 });
 
-                                //product.ProductName = test1.SelectSingleNode("//span[contains(@class,'pr-nm')]") != null ? test1.SelectSingleNode("//span[contains(@class,'pr-nm')]").InnerText : test1.SelectSingleNode("//*[@id='product-detail-app']/div/div[2]/div[2]/div[1]/div[1]/div[1]/h1/span").InnerText;
                                 product.ProductName = test1.SelectSingleNode("//h1[contains(@class,'pr-new-br')]") != null ? test1.SelectSingleNode("//h1[contains(@class,'pr-new-br')]/span").InnerText : test1.SelectSingleNode("//*[@id='product-detail-app']/div/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/h1/span").InnerText;
                                 product.ProductURL = headPurl + _tyPurl.Trim();
                                 product.PBarcode = barcode;
@@ -312,11 +314,11 @@ namespace Genbot.UI.PYService
                             {
                                 product.tyseller.Add(new TYSELLER
                                 {
-                                    SellerURL = StringOperations.slugnbsp(headPurl + test1.SelectSingleNode("//a[contains(@class,'pr-mc-w')]").Attributes["href"].Value),
-                                    SellerName = StringOperations.delnumb(test1.SelectSingleNode("//a[contains(@class,'pr-mc-w')]/div[2]//div[@class='pr-mb-mn']").InnerText),
-                                    LPrice = test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-org')]") != null ? test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-slg')]").InnerText : "Düşük Fiyat Bulunamadı",
-                                    HPrice = test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-org')]") != null ? test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-org')]").InnerText : test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-w']//div//span[@class='prc-slg']").InnerText,
-                                    KPrice = test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-pr-dsc']/div/span") != null ? test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-pr-dsc']/div/span").InnerText : "Kampanyalı Fiyat Bulunamadı",
+                                   SellerURL = StringOperations.slugnbsp(headPurl + test1.SelectSingleNode("//div[@class='sl-nm']/a").Attributes["href"].Value),
+                                   SellerName = StringOperations.delnumb(test1.SelectSingleNode("//div[contains(@class,'pr-mc-w')]/div[1]//div[@class='pr-mb-mn']").InnerText),
+                                   LPrice = test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-org')]") != null ? test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-slg')]").InnerText : "Düşük Fiyat Bulunamadı",
+                                   HPrice = test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-org')]") != null ? test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-w']//div//span[contains(@class,'prc-org')]").InnerText : test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-w']//div//span[@class='prc-slg']").InnerText,
+                                   KPrice = test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-pr-dsc']/div/span") != null ? test1.SelectSingleNode("//div[@class='pr-omc']//div[@class='pr-bx-pr-dsc']/div/span").InnerText : "Kampanyalı Fiyat Bulunamadı",
                                 });
                             }
                             else
