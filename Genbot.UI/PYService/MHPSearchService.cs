@@ -61,7 +61,7 @@ namespace Genbot.UI.PYService
                         dokuman1.LoadHtml(html2);
                         HtmlNode test12 = dokuman1.DocumentNode;
                         product.ProductName = StringOperations.slugnbsp(test12.SelectSingleNode("//p[contains(@class,'pd-block')]").InnerText);
-                        product.SellerName = test12.SelectSingleNode("//span[@class='warn-txt']/strong") != null ? test12.SelectSingleNode("//span[@class='warn-txt']/strong").InnerText : test12.SelectSingleNode("//a[@class='text-black']").InnerText;
+                        product.SellerName = test12.SelectSingleNode("//span[contains(@class,'warn-txt text-black')]//strong") != null ? test12.SelectSingleNode("//span[contains(@class,'warn-txt text-black')]//strong").InnerText : test12.SelectSingleNode("//a[@class='text-black']").InnerText;
                         //test12.SelectSingleNode("//span[@class='warn-txt']/strong").InnerText;
                         product.HPrice = test12.SelectSingleNode("//div[@class='price-row']/span[2]") != null ? test12.SelectSingleNode("//div[@class='price-row']/span[2]").InnerText : "Yüksek Fiyat Bulunamadı";
                         var dusuk = test12.SelectSingleNode("//div[@class='price-row']/span") != null ? test12.SelectSingleNode("//div[@class='price-row']/span").InnerText : "Düşük Fiyat Bulunamadı";
@@ -93,7 +93,6 @@ namespace Genbot.UI.PYService
                 }
             }
             return _productList;
-
 
         }
 
